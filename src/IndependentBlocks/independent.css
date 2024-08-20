@@ -1,0 +1,68 @@
+/* styles.css */
+
+/* Define CSS variables at the root level */
+:root {
+    --translate-distance: 40%;
+}
+
+/* Slide from the right */
+@keyframes slideInRight {
+    from {
+        transform: translateX(var(--translate-distance));
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Slide from the left */
+@keyframes slideInLeft {
+    from {
+        transform: translateX(calc(-1 * var(--translate-distance)));
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Slide from the bottom */
+@keyframes slideInUp {
+    from {
+        transform: translateY(var(--translate-distance));
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Slide from the top */
+@keyframes slideInDown {
+    from {
+        transform: translateY(calc(-1 * var(--translate-distance)));
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}

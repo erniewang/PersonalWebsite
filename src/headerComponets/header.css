@@ -1,0 +1,18 @@
+.HEADER {
+    background: none;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    /* why does margin-top get dissproportionally affected?*/
+    /* grid-template-columns: 30%, repeat(4, 17.5%); this breaks the entire godbamn program like a bitch */
+
+}
+
+.HeaderNoButtons {
+    background: none;
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    font-size: 350%;
+}

@@ -1,0 +1,16 @@
+*,
+.App,
+.renderBody {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    background-color: rgb(26, 26, 26);
+}
+
+.text {
+    background: none;
+}
+
+.textHide {
+    display: none;
+}

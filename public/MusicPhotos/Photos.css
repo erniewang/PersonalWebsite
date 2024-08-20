@@ -1,0 +1,241 @@
+/* For WebKit-based browsers (Chrome, Safari, etc.) */
+::-webkit-scrollbar {
+    width: 8px;
+    /* Set the scrollbar width */
+    height: 8px;
+    /* Set the scrollbar height for horizontal scroll */
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #888;
+    /* Set the color of the thumb */
+    border-radius: 10px;
+    /* Add rounded corners */
+}
+
+::-webkit-scrollbar-track {
+    background-color: #f5f5f5;
+    /* Set the background of the track */
+}
+
+/* Firefox-specific styles */
+* {
+    scrollbar-width: thin;
+    /* Thin scrollbar */
+    scrollbar-color: #888 #f5f5f5;
+    /* Thumb and track colors */
+}
+
+html,
+body {
+    /* why is there no width specified? having no width does not change anything. why though -> block elements automatically take up the full width.*/
+    /*why is there no margin specified? does the border-box do all this shit?*/
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: rgb(109, 109, 109);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+@keyframes phaseIn {
+    from {
+        opacity: calc(0);
+    }
+
+    to {
+        opacity: calc(1);
+    }
+}
+
+@keyframes phaseOut {
+    from {
+        opacity: calc(1);
+    }
+
+    to {
+        opacity: calc(0);
+    }
+}
+
+.bar {
+    width: calc(100% - 30px);
+    height: 15px;
+    background: rgb(255, 255, 255);
+    z-index: 100;
+}
+
+.barIndependent {
+    position: fixed;
+    height: 92%;
+    width: 12px;
+    background: white;
+    left: 15px;
+}
+
+.barIndependentRight {
+    position: fixed;
+    height: 92%;
+    width: 12px;
+    background: white;
+    right: 15px;
+}
+
+
+.barV {
+    width: 15px;
+    height: calc(100% - 30px);
+    background: rgb(238, 238, 238);
+    display: none;
+}
+
+/*
+Display flex centers everything. 
+*/
+
+.PhotoDisplay {
+    height: calc(95% - 30px);
+    width: calc(100% - 30px);
+    padding: 0;
+    padding-left: 30px;
+    padding-right: 15px;
+    background-repeat: no-repeat;
+    display: grid;
+    overflow-y: scroll;
+    gap: 1rem;
+    box-sizing: border-box;
+    grid-template-columns: repeat(auto-fit, minmax(20px, 1fr));
+    grid-auto-rows: 20px;
+    background-position-x: 30px;
+    animation-name: phaseIn;
+    animation-duration: .9s;
+}
+
+.PhotoDisplayGone {
+    height: calc(95% - 30px);
+    width: calc(100% - 30px);
+    padding: 0;
+    padding-left: 15px;
+    padding-right: 15px;
+    background: rgb(214, 214, 214);
+    display: grid;
+    overflow-y: scroll;
+    gap: 1rem;
+    box-sizing: border-box;
+    grid-template-columns: repeat(auto-fit, minmax(20px, 1fr));
+    grid-auto-rows: 20px;
+    background-position-x: 30px;
+    animation-name: phaseOut;
+    animation-duration: .5s;
+    opacity: calc(0);
+}
+
+.singleImage {
+    height: calc(95% - 30px);
+    width: calc(100% - 30px);
+    padding: 0 20px 0 20px;
+    /* padding with % fucks shit up*/
+    background: white;
+    overflow: hidden;
+    box-sizing: border-box;
+    display: none;
+    /* Initially hidden */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    animation-name: phaseIn;
+    animation-duration: 1s;
+    position: relative;
+}
+
+.singleImageGone {
+    display: none;
+}
+
+.singleImageFade {
+    height: calc(95% - 30px);
+    width: calc(100% - 30px);
+    padding: 0 20px 0 20px;
+    /* padding with % fucks shit up*/
+    background: white;
+    overflow: hidden;
+    box-sizing: border-box;
+    display: flex;
+    /* Initially hidden */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    animation-name: phaseOut;
+    animation-duration: 1s;
+    position: relative;
+}
+
+/* filter invert have to be segregated*/
+@keyframes phaseInInvert {
+    from {
+        filter: invert(0%);
+        opacity: 1;
+    }
+
+    to {
+        filter: invert(100%);
+        opacity: 1;
+    }
+}
+
+
+.testDiv {
+    width: 100%;
+    height: 100%;
+    background: black;
+    padding: 0;
+    margin: 0;
+    animation-name: phaseIn;
+    animation-duration: 1s;
+    box-shadow: 0 0 50px 10px rgba(0, 0, 0, 0.8);
+    position: relative;
+    /*without position relative. the img children divs expand to the full size of the screen */
+    /* radius gets overdone*/
+}
+
+.testDiv:hover {
+    filter: invert(100%);
+    animation: phaseInInvert 1s;
+}
+
+.imageDescription {
+    width: 100%;
+    height: auto;
+    background-color: #f5f5f5;
+    overflow-y: scroll;
+    padding: 12px;
+    border-radius: 2%;
+    margin-top: 5p;
+    font-size: 20px;
+}
+
+
+
+/*
+100vh for both width and height makes it square. so shit
+*/
+
+@media only screen and (max-width: 730px) {
+    .PhotoDisplay {
+        grid-template-columns: repeat(auto-fit, minmax(5px, 1fr));
+        grid-auto-rows: 5px;
+    }
+}
+
+@media only screen and (max-height: 330px) {
+    .PhotoDisplay {
+        grid-template-columns: repeat(auto-fit, minmax(5px, 1fr));
+        grid-auto-rows: 5px;
+    }
+}
